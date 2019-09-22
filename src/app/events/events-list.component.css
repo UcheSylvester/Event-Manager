@@ -1,0 +1,10 @@
+div.events {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+div.event {
+  width: 27em;
+}
