@@ -6,3 +6,11 @@
   color: #bbb;
   height: 2.5em;
 }
+
+.green {
+  color: rgb(11, 83, 11) !important;
+}
+
+.bold {
+  font-weight: bolder;
+}

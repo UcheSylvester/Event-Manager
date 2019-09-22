@@ -3,7 +3,7 @@ import { Component } from "@angular/core";
 @Component({
   selector: "app-events-list",
   templateUrl: "./events-list.component.html",
-  styleUrls: ['./events-list.component.css']
+  styleUrls: ["./events-list.component.css"]
 })
 export class EventsListComponent {
   events = [
@@ -92,11 +92,7 @@ export class EventsListComponent {
       time: "9:00 am",
       price: 950.0,
       imageUrl: "/assets/images/ng-nl.png",
-      location: {
-        address: "The NG-NL Convention Center & Scuba Shop",
-        city: "Amsterdam",
-        country: "Netherlands"
-      },
+      onlineUrl: "www.google.com",
       sessions: [
         {
           id: 1,
