@@ -17,4 +17,5 @@ export class EventsListComponent {
       country: "England"
     }
   };
+
 }
