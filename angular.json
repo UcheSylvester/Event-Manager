@@ -21,6 +21,7 @@
             "aot": false,
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
+              "node_modules/font-awesome/css/font-awesome.min.css",
               "node_modules/toastr/build/toastr.min.css",
               "node_modules/ngf-bootstrap/dist/bootstrap.min.css",
               "src/styles.css"
