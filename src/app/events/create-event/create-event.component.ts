@@ -9,6 +9,8 @@ import { Router } from "@angular/router";
 export class CreateEventComponent implements OnInit {
   constructor(private route: Router) {}
 
+  isDirty: boolean = true;
+
   ngOnInit() {}
 
   cancel(): void {
