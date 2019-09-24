@@ -14,6 +14,7 @@ import { CreateEventComponent } from "./events/create-event/create-event.compone
 import { Error404Component } from "./errors/404.component";
 import { EventRouteActivator } from "./events/event-route-activator";
 import { EventListResolver } from "./events/events-list-resolve.services";
+import { AuthService } from "./user-profile/auth.service";
 
 // import {
 //   AppComponent,
@@ -37,14 +38,18 @@ import { EventListResolver } from "./events/events-list-resolve.services";
     CreateEventComponent,
     Error404Component
   ],
+
   imports: [BrowserModule, RouterModule.forRoot(appRoutes)],
+
   providers: [
     EventService,
     ToastrService,
     EventRouteActivator,
     EventListResolver,
-    { provide: "canDeactivateCreateEvent", useValue: checkDirtyState }
+    { provide: "canDeactivateCreateEvent", useValue: checkDirtyState },
+    AuthService
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {}
