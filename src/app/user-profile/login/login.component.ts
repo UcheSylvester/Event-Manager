@@ -10,12 +10,14 @@ import { Router } from "@angular/router";
 export class LoginComponent implements OnInit {
   userName;
   password;
+  mouseoverLogin;
 
   constructor(private authService: AuthService, private router: Router) {}
+
   ngOnInit() {}
 
   login(formValues: { userName: string; password: string }): void {
-    console.log(this.authService);
+    // console.log(this.authService);
     this.authService.loginUser(formValues.userName, formValues.password);
     // navigate back to events page after authentication
     this.router.navigate(["events"]);
