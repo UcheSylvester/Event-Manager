@@ -3,9 +3,10 @@ import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { userRoutes } from "./userRoutes";
 import { UserProfileComponent } from "./user-profile.component";
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
-  declarations: [UserProfileComponent],
+  declarations: [UserProfileComponent, LoginComponent],
   imports: [CommonModule, RouterModule.forChild(userRoutes)],
   providers: []
 })

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
+import { IEvent } from 'src/app/shared/event.model';
 
 @Component({
   selector: "app-event-thumbnail",
@@ -6,7 +7,7 @@ import { Component, OnInit, Input } from "@angular/core";
   styleUrls: ["./event-thumbnail.component.css"]
 })
 export class EventThumbnailComponent implements OnInit {
-  @Input("recievedEvent") event: any;
+  @Input("recievedEvent") event: IEvent;
 
   constructor() {}
 
