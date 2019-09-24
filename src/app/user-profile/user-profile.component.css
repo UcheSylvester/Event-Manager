@@ -1,0 +1,13 @@
+em {
+  float: right;
+  color: red;
+  padding-left: 10px;
+}
+
+input.error {
+  background-color: rgb(197, 166, 166);
+}
+
+.error ::placeholder {
+  color: #999;
+}

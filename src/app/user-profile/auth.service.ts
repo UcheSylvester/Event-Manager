@@ -23,7 +23,7 @@ export class AuthService {
     // return this.currentUser;
   }
 
-  updateProfile(firstName: string, lastName: string) {
+  updateCurrentProfile(firstName: string, lastName: string) {
     this.currentUser.firstName = firstName;
     this.currentUser.lastName = lastName; 
     console.log(this.currentUser);
