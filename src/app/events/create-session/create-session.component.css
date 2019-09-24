@@ -5,7 +5,7 @@ em {
 }
 
 input.error {
-  background-color: rgb(194, 134, 134);
+  background-color: rgb(197, 166, 166);
 }
 
 .error ::placeholder {
