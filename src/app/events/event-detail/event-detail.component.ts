@@ -19,7 +19,7 @@ export class EventDetailComponent implements OnInit {
 
   ngOnInit() {
     let id = +this.route.snapshot.params["id"];
-    console.log(id, this.route.snapshot);
+    // console.log(id, this.route.snapshot);
     this.event = this.eventService.getEvent(id);
   }
 
@@ -37,6 +37,7 @@ export class EventDetailComponent implements OnInit {
     this.event.sessions.push(session);
     this.eventService.updateEvent(this.event);
     this.addMode = false;
+    console.log(session);
   }
 
   cancelAddSession() {

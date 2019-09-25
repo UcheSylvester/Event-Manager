@@ -4,8 +4,10 @@ import { Component, OnInit, Input } from "@angular/core";
   selector: "app-collapsible-well",
   template: `
     <div (click)="toggleContent()" class="well pointable">
-      <h4>{{ title }}</h4>
-      <ng-content *ngIf="visiblity"></ng-content>
+      <h4>
+        <ng-content selector="[well-title]"></ng-content>
+      </h4>
+      <ng-content selector="[well-body]" *ngIf="visiblity"></ng-content>
     </div>
   `,
   styleUrls: ["./collapsible-well.component.css"]
