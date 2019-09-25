@@ -6,3 +6,9 @@ div.container {
 img.event-image {
   height: 100px;
 }
+
+div.session {
+  cursor: pointer;
+  margin-top: 1.9em;
+  /* color: blue; */
+}
