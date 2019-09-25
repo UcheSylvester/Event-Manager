@@ -18,6 +18,7 @@ import { EventListResolver } from "./events/events-list-resolve.services";
 import { AuthService } from "./user-profile/auth.service";
 import { CreateSessionComponent } from "./events/create-session/create-session.component";
 import { SessionListComponent } from './events/session-list/session-list.component';
+import { CollapsibleWellComponent } from './shared/collapsible-well/collapsible-well.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { SessionListComponent } from './events/session-list/session-list.compone
     CreateSessionComponent,
     CreateSessionComponent,
     SessionListComponent,
+    CollapsibleWellComponent,
   ],
 
   imports: [
