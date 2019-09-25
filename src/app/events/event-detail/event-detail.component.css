@@ -10,5 +10,6 @@ img.event-image {
 div.session {
   cursor: pointer;
   margin-top: 1.9em;
+  margin-right: 1.8em;
   /* color: blue; */
 }

@@ -19,6 +19,7 @@ import { AuthService } from "./user-profile/auth.service";
 import { CreateSessionComponent } from "./events/create-session/create-session.component";
 import { SessionListComponent } from './events/session-list/session-list.component';
 import { CollapsibleWellComponent } from './shared/collapsible-well/collapsible-well.component';
+import { DurationPipe } from './shared/duration.pipe';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { CollapsibleWellComponent } from './shared/collapsible-well/collapsible-
     CreateSessionComponent,
     SessionListComponent,
     CollapsibleWellComponent,
+    DurationPipe
   ],
 
   imports: [
