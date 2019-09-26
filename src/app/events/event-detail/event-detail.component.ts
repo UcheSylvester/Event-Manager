@@ -11,6 +11,8 @@ import { IEvent, ISession } from "src/app/shared/event.model";
 export class EventDetailComponent implements OnInit {
   event: IEvent;
   addMode: boolean;
+  filterBy: string = "all";
+  sortBy: string = "votes";
 
   constructor(
     private eventService: EventService,

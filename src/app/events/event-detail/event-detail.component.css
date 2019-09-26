@@ -7,9 +7,12 @@ img.event-image {
   height: 100px;
 }
 
-div.session {
+div.add-session,
+div.filter-buttons {
   cursor: pointer;
-  margin-top: 1.9em;
-  margin-right: 1.8em;
-  /* color: blue; */
+  margin-top: 1.7em;
+}
+
+div.filter-buttons button {
+  margin: 5px;
 }
