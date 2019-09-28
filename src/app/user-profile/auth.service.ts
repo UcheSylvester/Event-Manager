@@ -4,7 +4,7 @@ import { IUser } from "./user.model";
 @Injectable()
 export class AuthService {
   // keeping track of current user
-  currentUser: IUser;
+  currentUser?: IUser;
   loginUser(userName: string, password: string) {
     this.currentUser = {
       id: 1,
@@ -25,7 +25,7 @@ export class AuthService {
 
   updateCurrentProfile(firstName: string, lastName: string) {
     this.currentUser.firstName = firstName;
-    this.currentUser.lastName = lastName; 
+    this.currentUser.lastName = lastName;
     console.log(this.currentUser);
   }
 }
