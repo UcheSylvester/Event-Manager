@@ -20,13 +20,13 @@ export const appRoutes: Routes = [
     resolve: { events: EventListResolver }
   },
   { path: "events/session/new", component: CreateSessionComponent },
+  { path: "events/404", component: Error404Component },
   {
     path: "events/:id",
     component: EventDetailComponent,
     canActivate: [EventRouteActivator]
   },
   { path: "user", loadChildren: "./user-profile/user.module#UserModule" },
-  { path: "events/404", component: Error404Component },
   { path: "", redirectTo: "events", pathMatch: "full" },
   { path: "**", redirectTo: "events/404", pathMatch: "full" }
 ];

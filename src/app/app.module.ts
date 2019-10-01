@@ -20,8 +20,12 @@ import { CreateSessionComponent } from "./events/create-session/create-session.c
 import { SessionListComponent } from "./events/session-list/session-list.component";
 import { CollapsibleWellComponent } from "./shared/collapsible-well/collapsible-well.component";
 import { DurationPipe } from "./shared/duration.pipe";
+import { JQ_TOKEN } from "./shared/jquery.service";
+import { SimpleModalComponent } from "./shared/simple-modal.component";
 
-declare let toastr: Toastr;
+let toastr: Toastr = window["toastr"];
+
+let jquery = window["$"];
 
 @NgModule({
   declarations: [
@@ -36,7 +40,8 @@ declare let toastr: Toastr;
     CreateSessionComponent,
     SessionListComponent,
     CollapsibleWellComponent,
-    DurationPipe
+    DurationPipe,
+    SimpleModalComponent
   ],
 
   imports: [
