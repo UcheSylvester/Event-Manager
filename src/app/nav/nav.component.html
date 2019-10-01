@@ -59,7 +59,7 @@
             placeholder="Search Sessions"
           />
         </div>
-        <button class="btn btn-default">
+        <button class="btn btn-default" modal-trigger="searchResults">
           Search
         </button>
       </form>
@@ -67,7 +67,7 @@
   </div>
 </div>
 
-<simple-modal title="Matching sessions">
+<simple-modal title="Matching sessions" elementId="searchResults">
   <div class="list-group">
     <a
       class="list-group-item"

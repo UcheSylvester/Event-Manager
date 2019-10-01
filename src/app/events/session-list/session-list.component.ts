@@ -16,7 +16,6 @@ export class SessionListComponent implements OnChanges {
   constructor() {}
 
   ngOnChanges() {
-    console.log(this.sessions);
     if (this.sessions) {
       this.filterSession(this.filterBy);
       // sorting sessions by votes or name
