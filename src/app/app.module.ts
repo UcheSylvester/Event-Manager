@@ -23,6 +23,7 @@ import { DurationPipe } from "./shared/duration.pipe";
 import { JQ_TOKEN } from "./shared/jquery.service";
 import { SimpleModalComponent } from "./shared/simple-modal.component";
 import { ModalTriggerDirective } from "./shared/modal-trigger.directive";
+import { UpvoteComponent } from './events/session-list/upvote/upvote.component';
 
 let toastr: Toastr = window["toastr"];
 
@@ -43,7 +44,8 @@ let jquery = window["$"];
     CollapsibleWellComponent,
     DurationPipe,
     SimpleModalComponent,
-    ModalTriggerDirective
+    ModalTriggerDirective,
+    UpvoteComponent
   ],
 
   imports: [
