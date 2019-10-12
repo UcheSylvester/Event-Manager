@@ -112,7 +112,7 @@
         placeholder="event price..."
       />
     </div>
-    <div ngModelGroup="location">
+    <div ngModelGroup="location" #locationGroup="ngModelGroup" validateLocation>
       <div class="form-group">
         <label for="address">Event Location:</label>
         <input
@@ -152,6 +152,9 @@
       <label for="onlineUrl">Online Url:</label>
       <input
         (ngModel)="(newEvent.onlineUrl)"
+        (change)="
+          locationGroup.control.controls.address.updateValueAndValidity()
+        "
         name="onlineUrl"
         id="onlineUrl"
         type="text"
@@ -201,13 +204,14 @@
       />
     </div>
 
-    <button type="submit" class="btn btn-primary">Save</button>
     <button
-      type="button"
+      type="submit"
       [disabled]="newEventForm.invalid"
-      class="btn btn-default"
-      (click)="cancel()"
+      class="btn btn-primary"
     >
+      Save
+    </button>
+    <button type="button" class="btn btn-default" (click)="cancel()">
       Cancel
     </button>
   </form>

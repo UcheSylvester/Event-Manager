@@ -23,7 +23,10 @@ import { DurationPipe } from "./shared/duration.pipe";
 import { JQ_TOKEN } from "./shared/jquery.service";
 import { SimpleModalComponent } from "./shared/simple-modal.component";
 import { ModalTriggerDirective } from "./shared/modal-trigger.directive";
-import { UpvoteComponent } from './events/session-list/upvote/upvote.component';
+import { UpvoteComponent } from "./events/session-list/upvote/upvote.component";
+import { VoterService } from "./shared/voter.service";
+import { LocationValidator } from "./events/create-event/location.validator.directive";
+import { HttpClientModule } from "@angular/common/http";
 
 let toastr: Toastr = window["toastr"];
 
@@ -50,9 +53,10 @@ let jquery = window["$"];
 
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes),
+    HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot(appRoutes),
   ],
 
   providers: [
@@ -62,7 +66,9 @@ let jquery = window["$"];
     EventRouteActivator,
     EventListResolver,
     { provide: "canDeactivateCreateEvent", useValue: checkDirtyState },
-    AuthService
+    AuthService,
+    VoterService,
+    LocationValidator
   ],
 
   bootstrap: [AppComponent]

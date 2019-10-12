@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, OnChanges } from "@angular/core";
+import { Component, Input, OnChanges } from "@angular/core";
 import { ISession } from "src/app/shared/event.model";
 import { AuthService } from "src/app/user-profile/auth.service";
-import { VoterService } from 'src/app/shared/voter.service';
+import { VoterService } from "src/app/shared/voter.service";
 
 @Component({
   selector: "app-session-list",
@@ -15,7 +15,10 @@ export class SessionListComponent implements OnChanges {
 
   filteredSessions: ISession[] = [];
 
-  constructor(private authService: AuthService, private voterService: VoterService) {}
+  constructor(
+    private authService: AuthService,
+    private voterService: VoterService
+  ) {}
 
   ngOnChanges() {
     if (this.sessions) {
@@ -27,7 +30,7 @@ export class SessionListComponent implements OnChanges {
     }
   }
 
-  toggleVote(session: ISession) {
+  toggleVotes(session: ISession) {
     if (this.userHasVoted(session)) {
       this.voterService.deleteVoter(
         session,
