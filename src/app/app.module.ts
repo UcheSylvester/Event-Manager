@@ -13,7 +13,6 @@ import { EventDetailComponent } from "./events/event-detail/event-detail.compone
 import { appRoutes } from "./routes";
 import { CreateEventComponent } from "./events/create-event/create-event.component";
 import { Error404Component } from "./errors/404.component";
-import { EventRouteActivator } from "./events/event-route-activator";
 import { EventListResolver } from "./events/events-list-resolve.services";
 import { AuthService } from "./user-profile/auth.service";
 import { CreateSessionComponent } from "./events/create-session/create-session.component";
@@ -27,6 +26,7 @@ import { UpvoteComponent } from "./events/session-list/upvote/upvote.component";
 import { VoterService } from "./shared/voter.service";
 import { LocationValidator } from "./events/create-event/location.validator.directive";
 import { HttpClientModule } from "@angular/common/http";
+import { EventResolver } from './events/event-resolver.service';
 
 let toastr: Toastr = window["toastr"];
 
@@ -53,22 +53,22 @@ let jquery = window["$"];
 
   imports: [
     BrowserModule,
-    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
+    HttpClientModule
   ],
 
   providers: [
     EventService,
     { provide: TOASTR_TOKEN, useValue: toastr },
     { provide: JQ_TOKEN, useValue: jquery },
-    EventRouteActivator,
     EventListResolver,
     { provide: "canDeactivateCreateEvent", useValue: checkDirtyState },
     AuthService,
     VoterService,
-    LocationValidator
+    LocationValidator,
+    EventResolver
   ],
 
   bootstrap: [AppComponent]

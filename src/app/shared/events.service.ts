@@ -4,7 +4,7 @@ import { IEvent, ISession } from "./event.model";
 import { HttpClient } from "@angular/common/http";
 import { catchError } from "rxjs/operators";
 
-Injectable();
+@Injectable()
 export class EventService {
   constructor(private http: HttpClient) {}
 
@@ -14,15 +14,10 @@ export class EventService {
       .pipe(catchError(this.handleError<IEvent[]>("getEvents", [])));
   }
 
-  private handleError<T>(operation = "operation", result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      return of(result as T);
-    };
-  }
-
-  getEvent(id: number): IEvent {
-    return EVENTS.find(event => event.id === id);
+  getEvent(id: number): Observable<IEvent> {
+    return this.http
+      .get<IEvent>("/api/events/" + id)
+      .pipe(catchError(this.handleError<IEvent>("getEvents")));
   }
 
   saveNewEvent(event: IEvent) {
@@ -62,6 +57,13 @@ export class EventService {
     }, 100);
 
     return emiter;
+  }
+
+  private handleError<T>(operation = "operation", result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      return of(result as T);
+    };
   }
 }
 
