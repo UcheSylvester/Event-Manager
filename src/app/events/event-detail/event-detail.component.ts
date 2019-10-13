@@ -20,8 +20,8 @@ export class EventDetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.route.params.forEach(param => {
-      this.event = this.route.snapshot.data["event"];
+    this.route.data.forEach(data => {
+      this.event = data["event"];
       this.addMode = false;
     });
 
@@ -41,9 +41,10 @@ export class EventDetailComponent implements OnInit {
 
     sessionStorage.id = nextId + 1;
     this.event.sessions.push(session);
-    this.eventService.updateEvent(this.event);
-    this.addMode = false;
-    console.log(session);
+    this.eventService.saveNewEvent(this.event).subscribe(() => {
+      this.addMode = false;
+      console.log(session);
+    });
   }
 
   cancelAddSession() {

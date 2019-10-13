@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter } from "@angular/core";
 import { Subject, Observable, of } from "rxjs";
 import { IEvent, ISession } from "./event.model";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { catchError } from "rxjs/operators";
 
 @Injectable()
@@ -17,46 +17,22 @@ export class EventService {
   getEvent(id: number): Observable<IEvent> {
     return this.http
       .get<IEvent>("/api/events/" + id)
-      .pipe(catchError(this.handleError<IEvent>("getEvents")));
+      .pipe(catchError(this.handleError<IEvent>("getEvent")));
   }
 
   saveNewEvent(event: IEvent) {
-    event.id = 888;
-    event.sessions = [];
-    EVENTS.push(event);
-    console.log(EVENTS);
+    let options = {
+      headers: new HttpHeaders({ "Content-Type": "application/json" })
+    };
+    return this.http
+      .post<IEvent>("/api/events", event, options)
+      .pipe(catchError(this.handleError<IEvent>("saveEvent")));
   }
 
-  updateEvent(event: IEvent) {
-    let index = EVENTS.findIndex(evt => evt.id === event.id);
-    EVENTS[index] = event;
-  }
-
-  searchSessions(searchTerm: string) {
-    const term = searchTerm.toLocaleLowerCase();
-    let results: ISession[] = [];
-
-    EVENTS.forEach(event => {
-      let matchingSessions = event.sessions.filter(session =>
-        session.name.toLocaleLowerCase().includes(term) ? session : ""
-      );
-      matchingSessions = matchingSessions.map((session: any) => {
-        session.eventId = event.id;
-        return session;
-      });
-
-      results = results.concat(matchingSessions);
-      // console.log(results);
-    });
-
-    // stimulating async call
-    const emiter = new EventEmitter(true);
-
-    setTimeout(() => {
-      emiter.emit(results);
-    }, 100);
-
-    return emiter;
+  searchSessions(searchTerm: string): Observable<ISession[]> {
+    return this.http
+      .get<ISession[]>("/api/sessions/search?search" + searchTerm)
+      .pipe(catchError(this.handleError<ISession[]>("searchEvent")));
   }
 
   private handleError<T>(operation = "operation", result?: T) {

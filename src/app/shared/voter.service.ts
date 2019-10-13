@@ -1,22 +1,46 @@
 import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+
 import { ISession } from "./event.model";
+import { catchError } from "rxjs/operators";
+import { Observable, of } from "rxjs";
 
 @Injectable()
 export class VoterService {
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  deleteVoter(session: ISession, voterName: string) {
+  deleteVoter(eventId: number, session: ISession, voterName: string) {
     session.voters = session.voters.filter(voter => voter !== voterName);
-    // console.log("deleting voter", session.voters);
+
+    const url = `/api/events/${eventId}/sessions/${session.id}/voters/${voterName}`;
+    this.http
+      .delete(url)
+      .pipe(catchError(this.handleError<ISession>("deleteVoter")))
+      .subscribe();
   }
 
-  addVoter(session: ISession, voterName: string) {
+  addVoter(eventId: number, session: ISession, voterName: string) {
     session.voters.push(voterName);
-    // console.log("adding voter", session.voters);
+
+    const url = `/api/events/${eventId}/sessions/${session.id}/voters/${voterName}`;
+    const options = {
+      headers: new HttpHeaders({ "Content-Type": "application/json" })
+    };
+    this.http
+      .post(url, {}, options)
+      .pipe(catchError(this.handleError<ISession>("addVoter")))
+      .subscribe();
   }
 
   userHasVoted(session: ISession, voterName: string) {
     // console.log("userhasvoted", session.voters);
     return session.voters.some(voter => voter === voterName);
+  }
+
+  private handleError<T>(operation = "operation", result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      return of(result as T);
+    };
   }
 }
