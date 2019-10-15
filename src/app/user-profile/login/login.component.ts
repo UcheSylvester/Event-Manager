@@ -8,9 +8,10 @@ import { Router } from "@angular/router";
   styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
-  userName;
-  password;
+  userName: string;
+  password: string;
   mouseoverLogin;
+  loginInvalid: boolean = false
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -18,9 +19,16 @@ export class LoginComponent implements OnInit {
 
   login(formValues: { userName: string; password: string }): void {
     // console.log(this.authService);
-    this.authService.loginUser(formValues.userName, formValues.password);
+    this.authService
+      .loginUser(formValues.userName, formValues.password)
+      .subscribe(response => {
+        if (!response) {
+          this.loginInvalid = true;
+        } else {
+          this.router.navigate(["events"]);
+        }
+      });
     // navigate back to events page after authentication
-    this.router.navigate(["events"]);
   }
 
   cancel(): void {
