@@ -7,7 +7,6 @@ import { AuthService } from './user-profile/auth.service';
     <app-nav></app-nav>
     <router-outlet></router-outlet>
   `
-  // <app-events-list></app-events-list>
 })
 export class AppComponent implements OnInit{
   constructor(private auth: AuthService){}
