@@ -76,5 +76,8 @@ function sortByNameAsc(s1: ISession, s2: ISession) {
   else return -1;
 }
 
-const sortByVotesDsc = (s1: ISession, s2: ISession) =>
-  (s2.voters.length = s1.voters.length);
+const sortByVotesDsc = (s1: ISession, s2: ISession) => {
+  if (s2.voters && s1.voters) {
+    return (s2.voters.length = s1.voters.length);
+  }
+};

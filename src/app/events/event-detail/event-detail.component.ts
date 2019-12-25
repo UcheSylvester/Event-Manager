@@ -21,6 +21,7 @@ export class EventDetailComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.forEach(data => {
+      console.log(data, "dldlld");
       this.event = data["event"];
       this.addMode = false;
     });

@@ -19,7 +19,6 @@ export class NavComponent implements OnInit {
   searchSession(searchTerm: string) {
     this.eventService.searchSessions(searchTerm).subscribe(session => {
       this.foundSessions = session;
-      // console.log(this.foundSessions);
     });
   }
 }

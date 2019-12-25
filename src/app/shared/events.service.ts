@@ -8,17 +8,23 @@ import { catchError } from "rxjs/operators";
 export class EventService {
   constructor(private http: HttpClient) {}
 
+  baseUrl = "https://event-manager-36667.firebaseio.com/";
+
   getEvents(): Observable<IEvent[]> {
     return this.http
-      .get<IEvent[]>("/api/events")
+      .get<IEvent[]>(`${this.baseUrl}/events.json`)
       .pipe(catchError(this.handleError<IEvent[]>("getEvents", [])));
   }
 
-  getEvent(id: number): Observable<IEvent> {
-    return this.http
-      .get<IEvent>("/api/events/" + id)
-      .pipe(catchError(this.handleError<IEvent>("getEvent")));
+  getEvent(events: IEvent[], id: number): IEvent {
+    return events.find(event => event.id === id);
   }
+
+  // getEvent(id: number): Observable<IEvent> {
+  //   return this.http
+  //     .get<IEvent>("/api/events/" + id)
+  //     .pipe(catchError(this.handleError<IEvent>("getEvent")));
+  // }
 
   saveNewEvent(event: IEvent) {
     let options = {
