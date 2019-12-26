@@ -10,6 +10,10 @@ export class EventService {
 
   baseUrl = "https://event-manager-36667.firebaseio.com/";
 
+  saveEvents(): Observable<IEvent[]> {
+    return this.http.put<IEvent[]>(`${this.baseUrl}/events.json`, EVENTS);
+  }
+
   getEvents(): Observable<IEvent[]> {
     return this.http
       .get<IEvent[]>(`${this.baseUrl}/events.json`)
@@ -20,20 +24,32 @@ export class EventService {
     return events.find(event => event.id === id);
   }
 
+  saveNewEvent(event: IEvent) {
+    let options = {
+      headers: new HttpHeaders({ "Content-Type": "application/json" })
+    };
+
+    EVENTS.push(event);
+    console.log(EVENTS);
+    return this.http
+      .put<IEvent>(`${this.baseUrl}/events.json`, EVENTS, options)
+      .pipe(catchError(this.handleError<IEvent>("saveEvent")));
+  }
+
   // getEvent(id: number): Observable<IEvent> {
   //   return this.http
   //     .get<IEvent>("/api/events/" + id)
   //     .pipe(catchError(this.handleError<IEvent>("getEvent")));
   // }
 
-  saveNewEvent(event: IEvent) {
-    let options = {
-      headers: new HttpHeaders({ "Content-Type": "application/json" })
-    };
-    return this.http
-      .post<IEvent>("/api/events", event, options)
-      .pipe(catchError(this.handleError<IEvent>("saveEvent")));
-  }
+  // saveNewEvent(event: IEvent) {
+  //   let options = {
+  //     headers: new HttpHeaders({ "Content-Type": "application/json" })
+  //   };
+  //   return this.http
+  //     .post<IEvent>("/api/events", event, options)
+  //     .pipe(catchError(this.handleError<IEvent>("saveEvent")));
+  // }
 
   searchSessions(searchTerm: string): Observable<ISession[]> {
     return this.http

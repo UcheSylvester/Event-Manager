@@ -11,17 +11,16 @@ import { IEvent } from "src/app/shared/event.model";
 })
 export class CreateEventComponent implements OnInit {
   constructor(private route: Router, private eventService: EventService) {}
-  newEvent;
-  isDirty: boolean = true;
+  isDirty = true;
 
   ngOnInit() {}
 
   saveEvent(formValues: IEvent) {
     // this.eventService.saveNewEvent(formValues);
-    this.eventService.saveNewEvent(formValues).subscribe(event => {
+    this.eventService.saveNewEvent(formValues).subscribe(events => {
+      console.log(events);
       this.isDirty = false;
       this.route.navigate(["events"]);
-      console.log(event);
     });
   }
 
